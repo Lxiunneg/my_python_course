@@ -460,7 +460,7 @@ git describe
 
    - 无序列表： 使用`-  `，来生成无序列表
 
-   - 超链接：`[nikename](hyperlink)`
+   - 超链接：`[nickname](hyperlink)`
 
      
 
