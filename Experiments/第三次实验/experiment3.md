@@ -424,6 +424,135 @@ Python列表操作
           return False
   ```
 
+- 第四题：从随机三元组中恢复秘密字符串(Recover a secret string from random triplets)
+
+  难度： 4kyu
+
+  有一个不为你所知的秘密字符串。给出一个随机三个字母的组合的集合，恢复原来的字符串。
+  
+  这里的三个字母的组合被定义为三个字母的序列，每个字母在给定的字符串中出现在下一个字母之前。"whi "是字符串 "whatisup "的一个三个字母的组合。
+  
+  作为一种简化，你可以假设没有一个字母在秘密字符串中出现超过一次。
+  
+  对于给你的三个字母的组合，除了它们是有效的三个字母的组合以及它们包含足够的信息来推导出原始字符串之外，你可以不做任何假设。特别是，这意味着秘密字符串永远不会包含不出现在给你的三个字母的组合中的字母。
+  
+  测试用例：
+  
+  ```python
+  secret = "whatisup"
+  triplets = [
+    ['t','u','p'],
+    ['w','h','i'],
+    ['t','s','u'],
+    ['a','t','s'],
+    ['h','a','p'],
+    ['t','i','s'],
+    ['w','h','s']
+  ]
+  test.assert_equals(recoverSecret(triplets), secret)
+  ```
+  
+  代码提交地址：
+  <https://www.codewars.com/kata/53f40dff5f9d31b813000774/train/python>
+  
+  
+  
+  ```py
+  secret = "whatisup"
+  triplets = [
+      ['t', 'u', 'p'],
+      ['w', 'h', 'i'],
+      ['t', 's', 'u'],
+      ['a', 't', 's'],
+      ['h', 'a', 'p'],
+      ['t', 'i', 's'],
+      ['w', 'h', 's']
+  ]
+  
+  
+  def recoverSecret(triplets):
+      letters = set()
+  
+      before = {}
+      after = {}
+  
+      start_letters = []
+  
+      for triplet in triplets:
+          for i in range(0, len(triplet)):
+              if triplet[i] not in before:
+                  before[triplet[i]] = set()
+              if triplet[i] not in after:
+                  after[triplet[i]] = set()
+  
+              cur_before = set(triplet[:i])
+              cur_after = set(triplet[i+1:])
+  
+              before[triplet[i]].update(cur_before)
+              after[triplet[i]].update(cur_after)
+  
+              letters.add(triplet[i])
+  
+      for letter in letters:
+          if len(before[letter]) == 0:
+              start_letters.append(letter)
+  
+      # print(start_letters)
+  
+      ans = ""
+      visited = set()
+  
+      def dfs(letter):
+          nonlocal ans
+  
+          if letter in visited:
+              return
+  
+          visited.add(letter)
+  
+          for next_after in after[letter]:
+              dfs(next_after)
+  
+          ans = letter + ans
+  
+      for start_letter in start_letters:
+          dfs(start_letter)
+  
+      return ans
+  
+  
+  print(recoverSecret(triplets))
+  ```
+  
+  
+  
+  
+  
+- 第五题：去掉喷子的元音（Disemvowel Trolls）
+
+  难度： 7kyu
+
+  喷子正在攻击你的评论区!
+  处理这种情况的一个常见方法是删除喷子评论中的所有元音(字母：a,e,i,o,u)，以消除威胁。
+  你的任务是写一个函数，接收一个字符串并返回一个去除所有元音的新字符串。
+  例如，字符串 "This website is for losers LOL!"   将变成 "Ths wbst s fr lsrs LL!".
+  
+  注意：对于这个Kata来说，y不被认为是元音。
+  代码提交地址：
+  <https://www.codewars.com/kata/52fba66badcd10859f00097e>
+  
+  
+
+  ```py
+  def disemvowel(string_):
+      vowels = ['a','A','o','O','e','E','i','I','u','U']
+      
+      for c in vowels:
+          string_ = string_.replace(c,'')
+      
+      return string_
+  ```
+  
   
 
 ## 实验考查
@@ -431,11 +560,60 @@ Python列表操作
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. Python中的列表可以进行哪些操作？
+
+   ```py
+   # 创建列表
+   list = []
+   # 增加元素
+   list.append(1)
+   # 删除元素
+   list.remove()
+   #修改元素
+   list[index] = ''
+   #元素是否在列表
+   value in list
+   # 切片
+   list_new = list_old[:]
+   ```
+
+   
+
 2. 哪两种方法可以用来对Python的列表排序？这两种方法有和区别？
+
+   ```py
+   #不修改原序列的排序
+   sorted(list)
+   #修改原序列
+   sort(list)
+   ```
+
+   
+
 3. 如何将Python列表逆序打印？
+
+   ```py
+   for element in reversed(list):
+       print(element)
+   ```
+
+   
+
 4. Python中的列表执行哪些操作时效率比较高？哪些操作效率比较差？是否有类似的数据结构可以用来替代列表？
+
+   高效操作：
+
+   1. 获取单个元素：通过索引直接访问列表中的元素的效率很高，因为它是基于常数时间复杂度 O(1) 完成的。
+   2. 添加元素到列表末尾：使用 append() 方法将元素添加到列表的末尾是高效的，因为它的平均时间复杂度也是常数时间 O(1)。
+
+   相对较低效的操作：
+
+   1. 插入或删除元素：在列表的中间位置插入或删除元素会涉及到元素的移动操作，导致时间复杂度为 O(n)，其中 n 是列表的长度。这是因为列表是基于数组实现的，插入或删除元素涉及到元素的移动。
+   2. 切片操作：切片操作会创建一个新的列表，并且复制原始列表中的元素，因此时间和空间复杂度都是 O(k)，其中 k 是切片的长度。
+
+   元组和队列考研代替列表
+
 5. 阅读《Fluent Python》Chapter 2. An Array of Sequence - Tuples Are Not Just Immutable Lists小节（p30-p35）。总结该小节的主要内容。
 
 ## 实验总结
 
-总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+学会了列表的操作和使用其来解决算法问题。
