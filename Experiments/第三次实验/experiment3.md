@@ -330,6 +330,21 @@ Python列表操作
   print(solution(10))
   ```
 
+  ```mermaid
+  flowchart LR
+  A[开始] --> B{number <= 3 ?}
+  B --> |Yes|C[return 0]
+  B --> |No|D{number <= 5 ?}
+  D --> |Yes|E[return 3]
+  D --> |No|F[return sum]
+  
+  Z[结束]
+  
+  C & E & F --> Z
+  ```
+
+  
+
 - 第二题：重复字符的编码器（Duplicate Encoder）
 
   难度： 6kyu
@@ -368,6 +383,15 @@ Python列表操作
       
       return message
   ```
+
+  ```mermaid
+  flowchart LR
+  A[开始] --> B[统计字符出现的次数]
+  B --> D[根据出现的次数替换符号]
+  D --> Z[结束]
+  ```
+
+  
 
 - 第三题：括号匹配（Valid Braces）
 
@@ -524,7 +548,15 @@ Python列表操作
   print(recoverSecret(triplets))
   ```
   
+  ```mermaid
+  flowchart 
+  A[开始] --> B[遍历二维数组,将字母分为前序字母before,后序字母after]
+  B --> C[遍历before字典,将没有前序字母的字母设为开始字母]
+  C --> D[从开始字母起进行DFS遍历所有可能]
+  D --> E[return ANS]
+  E --> Z[结束]
   
+  ```
   
   
   
