@@ -1,14 +1,14 @@
 # 实验三 Python列表
 
-班级： 21计科1
+班级： 21计科4班
 
-学号： 202302200000
+学号： 20210203410
 
-姓名： 张三
+姓名： 刘杰
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：https://github.com/Lxiunneg/my_python_course
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：https://www.codewars.com/users/Lxiunneg
 
 ---
 
