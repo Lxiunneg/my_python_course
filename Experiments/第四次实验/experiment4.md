@@ -10,7 +10,6 @@ Github地址：https://github.com/Lxiunneg/my_python_course
 
 CodeWars地址：https://www.codewars.com/users/Lxiunneg
 
-
 ---
 
 ## 实验目的
@@ -634,8 +633,11 @@ print(decodeMorse((decodeBits(bits))))
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. 字典的键和值有什么区别？
-2. 在读取和写入字典时，需要使用默认值可以使用什么方法？
+    键是一种标识符，用于表示某种值。  
+2.取和写入字典时，需要使用默认值可以使用什么方法？
+    for key,values in dict.items():
 3. Python中的while循环和for循环有什么区别？
+    while循环是不确定的循环，for循环是一种确定步骤的循环。这是两个循环的不同。
 4. 阅读[PEP 636 – Structural Pattern Matching: Tutorial](https://peps.python.org/pep-0636/), 总结Python 3.10中新出现的match语句的使用方法。
 
 ## 实验总结
