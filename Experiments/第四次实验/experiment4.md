@@ -1,3 +1,4 @@
+
 # 实验四 Python字典和while循环
 
 班级： 21计科4班
@@ -26,7 +27,7 @@ CodeWars地址：https://www.codewars.com/users/Lxiunneg
 
 ## 实验内容和步骤
 
-### 第一部分
+:### 第一部分
 
 Python列表操作
 
