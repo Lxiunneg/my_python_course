@@ -310,7 +310,23 @@ def validate_sudoku(board):
                 list_temp.append(num)
     return True
 ```
-
+```mermaid
+graph TD
+A((开始)) --> B{invert_matrix函数}
+B --> C{split_matrix函数}
+C --> D{list_rows, list_cols, list_3x3s初始化}
+D --> E{遍历list_rows}
+E --> F{检查重复元素和空单元格}
+F --> G{返回False或继续}
+G --> H{遍历list_cols}
+H --> I{检查重复元素和空单元格}
+I --> J{返回False或继续}
+J --> K{遍历list_3x3s}
+K --> L{检查重复元素}
+L --> M{返回False或继续}
+M --> N{返回True}
+N --> O((结束))
+```
 ---
 
 #### 第五题： 疯狂的彩色三角形
