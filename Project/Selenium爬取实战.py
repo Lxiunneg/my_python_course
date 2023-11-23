@@ -9,6 +9,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.chrome.service import Service
 # 导入pymongo模块，用于操作MongoDB数据库
 import pymongo
 # 导入logging模块，用于记录日志
@@ -39,8 +40,10 @@ collection = db[MONGO_COLLECTION_NAME]
 
 # 创建Chrome浏览器选项对象，用于设置浏览器的选项
 options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+webdriver_service = Service('/usr/bin/chromedriver')
 # 创建Chrome浏览器对象，用于操作Chrome浏览器
-browser = webdriver.Chrome(options=options)
+browser = webdriver.Chrome(options=options,service=webdriver_service)
 # 创建WebDriverWait对象，设置浏览器的显示等待时间
 wait = WebDriverWait(browser, TIME_OUT)
 
